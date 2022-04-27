@@ -24,6 +24,7 @@
   --hover-card-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
   --examples-thumb-background: rgba(47, 48, 58, 0.8);
+  --main-animation: cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   color: var(--primary-text-color);
@@ -102,6 +103,8 @@ body {
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-decoration: none;
+
+  transition: color 250ms var(--main-animation);
 }
 .site-nav .link:hover,
 .site-nav .link:focus {
@@ -112,16 +115,30 @@ body {
   color: var(--accent-color);
 }
 /* Лінія */
+@keyframes addLine {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .site-nav .link.current::after {
   position: absolute;
   content: '';
+  bottom: -1px;
+  left: 0;
+
   margin: 0;
   padding: 0;
   width: 100%;
   height: 4px;
+
   background-color: var(--accent-color);
-  bottom: -1px;
-  left: 0;
+  animation: addLine 250ms var(--main-animation);
   border-radius: 2px;
 }
 .auth-link.top {
@@ -142,6 +159,8 @@ body {
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-decoration: none;
+
+  transition: color 250ms var(--main-animation);
 }
 .auth-link .link:hover,
 .auth-link .link:focus {
@@ -360,6 +379,8 @@ body {
 
   justify-content: center;
   align-items: center;
+
+  transition: background-color 250ms var(--main-animation), color 250ms var(--main-animation) 150ms;
 }
 .social-media-icons:hover,
 .social-media-icons:focus {
@@ -396,11 +417,15 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
+
   justify-content: center;
   align-items: center;
+
   border: 1px solid var(--social-media-icons);
   border-radius: 4px;
   color: var(--social-media-icons);
+
+  transition: color 250ms var(--main-animation), border 250ms var(--main-animation);
 }
 .company-link:hover,
 .company-link:focus {
@@ -434,10 +459,12 @@ body {
   line-height: 1.71;
 }
 .footer-link {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--footer-link-color);
   font-style: normal;
   line-height: 1.71;
   text-decoration: none;
+
+  transition: color 250ms var(--main-animation);
 }
 .footer-link:hover,
 .footer-link:focus {
@@ -483,6 +510,8 @@ body {
 .item .social-media-icons.icons-footer {
   background-color: var(--social-media-footer-background);
   color: var(--main-background-color);
+
+  transition: background-color 250ms var(--main-animation);
 }
 .item .social-media-icons.icons-footer:hover,
 .item .social-media-icons.icons-footer:focus {
@@ -515,6 +544,9 @@ body {
   font-size: 16px;
   line-height: 1.62;
   text-align: center;
+
+  transition: background-color 250ms var(--main-animation), color 250ms var(--main-animation),
+    box-shadow 250ms var(--main-animation);
 }
 .product-button.all {
   color: var(--white-title-color);
@@ -551,36 +583,37 @@ body {
   position: relative;
   min-width: 370px;
   min-height: 294px;
+  overflow: hidden;
 }
-.card-description-thumb::before {
+.product-overlay {
   position: absolute;
-  content: '';
   background-color: rgba(33, 150, 243, 0.9);
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
+  transform: translateY(+101%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-description-text {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 63px 24px;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
   color: var(--main-background-color);
 
   font-size: 18px;
   line-height: 1.55;
-  opacity: 0;
+  /* opacity: 0; */
+}
+.card:hover .product-overlay,
+.card:focus .product-overlay {
+  transform: translateY(0);
 }
 .card-description-text:hover,
 .card-description-text:focus,
 .card-description-thumb:hover::before {
-  opacity: 1;
+  /* opacity: 1; */
 }
 .service-picture {
   display: block;
@@ -616,12 +649,16 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+
+  transition: opacity 250ms var(--main-animation);
 }
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
 }
-
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0, 9);
+}
 .modal {
   min-width: 528px;
   min-height: 581px;
@@ -630,7 +667,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms var(--main-animation);
 }
 
 .modal-close {
