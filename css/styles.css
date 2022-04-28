@@ -604,7 +604,6 @@ body {
 
   font-size: 18px;
   line-height: 1.55;
-  /* opacity: 0; */
 }
 .card:hover .product-overlay,
 .card:focus .product-overlay {
@@ -613,7 +612,6 @@ body {
 .card-description-text:hover,
 .card-description-text:focus,
 .card-description-thumb:hover::before {
-  /* opacity: 1; */
 }
 .service-picture {
   display: block;
