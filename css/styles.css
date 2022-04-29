@@ -277,12 +277,15 @@ body {
   position: relative;
 }
 .examples-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 0;
   left: 0;
 
-  width: 100%;
-  padding: 27px 82px;
+  width: 370px;
+  height: 70px;
   margin: 0;
   background-color: var(--examples-thumb-background);
   color: var(--main-background-color);
@@ -380,7 +383,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  transition: background-color 250ms var(--main-animation), color 250ms var(--main-animation) 150ms;
+  transition: background-color 250ms var(--main-animation), color 250ms var(--main-animation);
 }
 .social-media-icons:hover,
 .social-media-icons:focus {
@@ -425,7 +428,7 @@ body {
   border-radius: 4px;
   color: var(--social-media-icons);
 
-  transition: color 250ms var(--main-animation), border 250ms var(--main-animation);
+  transition: color 250ms var(--main-animation), border-color 250ms var(--main-animation);
 }
 .company-link:hover,
 .company-link:focus {
@@ -563,6 +566,8 @@ body {
   text-decoration: none;
   width: 100%;
   height: 100%;
+
+  transition: box-shadow 250ms var(--main-animation);
 }
 .card:hover,
 .card:focus {
